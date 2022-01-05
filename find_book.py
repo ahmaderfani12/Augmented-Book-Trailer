@@ -30,5 +30,6 @@ def find_best_cover(books,input_image,last_best=None):
             best_feature_number = len(good)
             best_book=b
     # print('good features: '+ str(len(good)))
-    best_book.features=len(good)
+    if(best_book):
+        best_book.features=len(good)
     return  best_book

@@ -38,26 +38,26 @@ while success:
         best_book = find_best_cover(books,video_frame,best_book)
         out_frame = video_frame
 
-        # Get trailer
-        if(best_book.video==None):
-            trailer = cv2.VideoCapture(best_book.video_address)
-            best_book.video=trailer
-        else:
-            trailer=best_book.video
+        if(best_book):
+            # Get trailer
+            if(best_book.video==None):
+                trailer = cv2.VideoCapture(best_book.video_address)
+                best_book.video=trailer
+            else:
+                trailer=best_book.video
 
-        # Get trailer frame
-        trailer.set(cv2.CAP_PROP_POS_FRAMES,best_book.last_frame)
-        success,trailer_frame = trailer.read()
+            # Get trailer frame
+            trailer.set(cv2.CAP_PROP_POS_FRAMES,best_book.last_frame)
+            success,trailer_frame = trailer.read()
 
-        # Process augmented frame
-        out_frame = compos.combine(best_book,video_frame,trailer_frame)
+            # Process augmented frame
+            out_frame = compos.combine(best_book,video_frame,trailer_frame)
 
-        best_book.last_frame+=1
+            best_book.last_frame+=1
+            
         count += 1
-
         out_frames.append(out_frame)
-        print("Frame: "+str(count)+"/"+str(video_length))
-
+        print("Frame: "+str(count)+"/"+str(video_length-1))
 
 video.save_video(out_frames,'output.mp4')
 
