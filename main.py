@@ -8,21 +8,21 @@ from composer import composer
 
 #Load book and trailers
 books=[]
-books.append(book('Angels and Demons',cv2.imread("files/Angels and Demons.jpg",1),"files/Angels and Demons.mp4"))
-books.append(book('Anne of Green Gables & Anne of Avonlea',cv2.imread("files/Anne of Green Gables & Anne of Avonlea.jpg",1),"files/Anne of Green Gables & Anne of Avonlea.mp4"))
+# books.append(book('Angels and Demons',cv2.imread("files/Angels and Demons.jpg",1),"files/Angels and Demons.mp4"))
+# books.append(book('Anne of Green Gables & Anne of Avonlea',cv2.imread("files/Anne of Green Gables & Anne of Avonlea.jpg",1),"files/Anne of Green Gables & Anne of Avonlea.mp4"))
 books.append(book('David Copperfield',cv2.imread("files/David Copperfield.jpg",1),"files/David Copperfield.mp4"))
-books.append(book('Dracula',cv2.imread("files/Dracula.jpg",1),"files/Dracula.mp4"))
-books.append(book('Pickwick Papers',cv2.imread("files/Pickwick Papers.jpg",1),"files/Pickwick Papers.mp4"))
-books.append(book('To Kill a Mockingbird',cv2.imread("files/To Kill a Mockingbird.jpg",1),"files/To Kill a Mockingbird.mp4"))
-books.append(book('Tom Sawyer and Huckleberry Finn',cv2.imread("files/Tom Sawyer and Huckleberry Finn.jpg",1),"files/Tom Sawyer and Huckleberry Finn.mp4"))
-books.append(book('Twenty Thousand Leagues Under the Sea',cv2.imread("files/Twenty Thousand Leagues Under the Sea.jpg",1),"files/Twenty Thousand Leagues Under the Sea.mp4"))
-books.append(book('Twilight - Eclipse',cv2.imread("files/Twilight - Eclipse.jpg",1),"files/Twilight - Eclipse.mp4"))
-books.append(book('Twilight - New Moon',cv2.imread("files/Twilight - New Moon.jpeg",1),"files/Twilight - New Moon.mp4"))
+# books.append(book('Dracula',cv2.imread("files/Dracula.jpg",1),"files/Dracula.mp4"))
+# books.append(book('Pickwick Papers',cv2.imread("files/Pickwick Papers.jpg",1),"files/Pickwick Papers.mp4"))
+# books.append(book('To Kill a Mockingbird',cv2.imread("files/To Kill a Mockingbird.jpg",1),"files/To Kill a Mockingbird.mp4"))
+# books.append(book('Tom Sawyer and Huckleberry Finn',cv2.imread("files/Tom Sawyer and Huckleberry Finn.jpg",1),"files/Tom Sawyer and Huckleberry Finn.mp4"))
+# books.append(book('Twenty Thousand Leagues Under the Sea',cv2.imread("files/Twenty Thousand Leagues Under the Sea.jpg",1),"files/Twenty Thousand Leagues Under the Sea.mp4"))
+# books.append(book('Twilight - Eclipse',cv2.imread("files/Twilight - Eclipse.jpg",1),"files/Twilight - Eclipse.mp4"))
+# books.append(book('Twilight - New Moon',cv2.imread("files/Twilight - New Moon.jpeg",1),"files/Twilight - New Moon.mp4"))
 
 
 
 # Input video*
-vidcap = cv2.VideoCapture('files/Test/1.MOV')
+vidcap = cv2.VideoCapture('files/Test/0.MOV')
 success,video_frame = vidcap.read()
 video_length=int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
 
@@ -58,12 +58,8 @@ while success:
         out_frames.append(out_frame)
         print("Frame: "+str(count)+"/"+str(video_length))
 
-        if(count>35):
-            break
 
-
-
-video.save_video(out_frames,'output1.mp4')
+video.save_video(out_frames,'output.mp4')
 
 
 
