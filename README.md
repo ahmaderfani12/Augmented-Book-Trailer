@@ -1,7 +1,7 @@
 # Augmented-Book-Trailer
 ## About The Project
 This was one of my computer vision homework in Fall 2021.
-A database contains the cover of a book and a movie trailer based on that. The goal is to get an input video, find a relevant book, and project its movie trailer on the cover.
+A database contains the cover of some books and  movie trailers based on them. The goal is to get an input video, find a relevant book, and project its movie trailer on the cover.
 ## Summary of process
 1. Get the books database(Here I simply create book objects in the main module)
 2. Read input video frames and find the best-matched book using ORB feature matching.
