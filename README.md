@@ -17,11 +17,12 @@ Create a mask using new corner positions.
 ## Output
 As our input is full of detail from other books and sometimes our cover is so simple and doesn't provide enough feature points, there are many frames with misinterpreting with other books. To solve this issue, I keep the last good data ( converted positions) and reuse them when there are not enough features.
     <br />
+    <br />
 Raw output:
     <br />
 ![alt text](https://github.com/ahmaderfani12/Augmented-Book-Trailer/blob/master/files/Readme/raw_out.gif?raw=true)
     <br />
-Using previous in in misinterpretations:
+Using previous data in misinterpretations:
     <br />
 ![alt text](https://github.com/ahmaderfani12/Augmented-Book-Trailer/blob/master/files/Readme/stacked_out.gif?raw=true)
 
