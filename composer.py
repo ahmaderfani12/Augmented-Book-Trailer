@@ -1,20 +1,21 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-import VideoEdit as video
+import video
 
 class composer:
     def __init__(self) :
-        self.cover_overlay=None
+        self.matrix=None
         self.mask_inverse= None
         self.temp_count=0
 
-    def temp_combine(self,video_frame):
-        if(self.cover_overlay is None or self.temp_count>3):
+    def temp_combine(self,video_frame,trailer_frame):
+        if(self.matrix is None or self.temp_count>3):
             return video_frame
-            
+
+        overlay = cv2.warpPerspective(trailer_frame,self.matrix,(video_frame.shape[1],video_frame.shape[0]))   
         masked_frame = cv2.bitwise_and(video_frame,video_frame,mask=self.mask_inverse)
-        output_frame = cv2.bitwise_or(self.cover_overlay,masked_frame)
+        output_frame = cv2.bitwise_or(overlay,masked_frame)
         self.temp_count+=1
         return output_frame
         
@@ -53,7 +54,7 @@ class composer:
 
         # If there are not enough good points use previous data
         if(len(good)<100):
-            return self.temp_combine(video_frame)
+            return self.temp_combine(video_frame,trailer_frame)
 
         self.temp_count=0
 
@@ -65,6 +66,7 @@ class composer:
 
         # Find transform matrix
         matrix, mask = cv2.findHomography(scr_points,dst_points,cv2.RANSAC,5)
+        self.matrix=matrix
 
         # Convert cover corners point to frame space
         points = np.float32([[0,0],[0,tH],[tW,tH],[tW,0]]).reshape(-1,1,2)
@@ -73,7 +75,7 @@ class composer:
         #img4=cv2.polylines(frame_image,[np.int32(dest)],True,(255,0,255),3)
 
         # create overlay image of target(trailer_frame)
-        self.cover_overlay = cv2.warpPerspective(trailer_frame,matrix,(video_frame.shape[1],video_frame.shape[0]))
+        cover_overlay = cv2.warpPerspective(trailer_frame,matrix,(video_frame.shape[1],video_frame.shape[0]))
 
         mask = np.zeros((video_frame.shape[0],video_frame.shape[1]),np.uint8)
         cv2.fillPoly(mask,[np.int32(dest)],(255,255,255))
@@ -83,6 +85,6 @@ class composer:
         # Masked frame
         masked_frame = cv2.bitwise_and(output_frame,output_frame,mask=self.mask_inverse)
         # Add img_overlay to frame
-        output_frame = cv2.bitwise_or(self.cover_overlay,masked_frame)
+        output_frame = cv2.bitwise_or(cover_overlay,masked_frame)
 
         return  output_frame

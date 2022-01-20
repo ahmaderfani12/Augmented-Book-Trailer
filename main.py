@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import VideoEdit as video
+import video as video
 from book import book
 from find_book import find_best_cover
 from composer import composer
@@ -59,7 +59,7 @@ while success:
         out_frames.append(out_frame)
         print("Frame: "+str(count)+"/"+str(video_length-1))
 
-video.save_video(out_frames,'output.mp4')
+video.save_video(out_frames,'outputr.mp4')
 
 
 
